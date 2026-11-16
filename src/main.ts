@@ -15,6 +15,8 @@ async function bootstrap() {
 
   const documentFactory = () =>
     SwaggerModule.createDocument(app, config);
+  const configService = app.get(ConfigService);
+  const port = Number(configService.get<string>('PORT') ?? '8000');
 
   SwaggerModule.setup('api', app, documentFactory);
 
